@@ -7,5 +7,6 @@
 *.pre
 *.sdb
 *.sym
+*.hex
 *.disable
 startup.*
