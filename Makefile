@@ -11,6 +11,7 @@
 
 OPT=debug
 CC=xc8
+SRC_PATH=src
 SRC=main
 SRC_USRT=usart
 OBJECTS=$(SRC).o
@@ -28,7 +29,7 @@ CP=cp
 all: build
 build:
 	@${MKDIR} $(DISTDIR)
-	$(CC) $(OPTIONS) $(SRC).c $(SRC_USRT).c
+	$(CC) $(OPTIONS) $(SRC_PATH)/$(SRC).c $(SRC_PATH)/$(SRC_USRT).c
 flash: build
 	pk2cmd -M -PPIC$(CHIP)  -Y  -F$(DISTDIR)/$(SRC).hex
 clean:
