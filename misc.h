@@ -14,5 +14,4 @@
 #define delay_us(x)				_delay(((unsigned long)((x/4)*(_XTAL_FREQ/1000000.0))))
 #define delay_cycles(x)			_delay(x)
 
-
 #endif //MISC_H

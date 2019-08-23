@@ -1,12 +1,1 @@
-*.as
-*.cmf
-*.d
-*.elf
-*.hxl
-*.p1
-*.pre
-*.sdb
-*.sym
-*.hex
-*.disable
-startup.*
+dist/*
