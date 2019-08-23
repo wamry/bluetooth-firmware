@@ -1,8 +1,6 @@
 
 /* PIC18F2550 USART Header File */
-
-// This is a guard condition so that contents of this file are not included
-// more than once.  
+ 
 #ifndef USART_HEADER_FILE_H
 #define	USART_HEADER_FILE_H
 

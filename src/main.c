@@ -10,8 +10,9 @@
 	Blink twice in 1 sec: Connection successful in Data Mode
 */
 
-#include "usart.h"
+#include "config.h"
 #include "misc.h"
+#include "usart.h"
 
 #define LED_LATCH LATA0
 #define LED_TRIS TRISA
