@@ -1,6 +1,5 @@
 #ifndef MISC_H
 #define MISC_H
-#define _XTAL_FREQ 2000000					/* Device Clock speed/Frequency 2MHz */
 
 #define _BV(NUM)				(1 << NUM)
 #define toggle(LAT,PIN)			LAT		^=  _BV(PIN)

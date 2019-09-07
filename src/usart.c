@@ -1,6 +1,7 @@
 /* PIC18F2550 USART Source File */
-
+#include <pic18f2550.h>
 #include "usart.h"
+
 
 /*****************************USART Initialization*******************************/
 void USART_Init(long baud_rate)     

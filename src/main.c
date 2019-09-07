@@ -1,49 +1,28 @@
-/* Interface HC-05 Bluetooth module with PIC18F2550 */
-
-/************* HC-05 *************
-	Supported buad rates: 9600, 19200, 38400, 57600, 115200, 230400, 460800
-    Default Data Mode Baud Rate: 9600, 8, N, 1
-	Default Command Mode Baud Rate: 38400, 8, N, 1
-	BLINKING
-	Blink once in 2 sec: Module has entered Command Mode
-	Repeated Blinking: Waiting for connection in Data Mode
-	Blink twice in 1 sec: Connection successful in Data Mode
-*/
-
+#include <pic18f2550.h>
 #include "config.h"
-#include "misc.h"
 #include "usart.h"
 
-#define LED_LATCH LATA0
-#define LED_TRIS TRISA
-
-void main()
-{
-    OSCCON=0x72;              /* use internal oscillator frequency
-                                 which is set to * MHz */
+void main() {
     char data_in;
-    LED_TRIS = 0;                /* set PORT as output port */
-    USART_Init(9600);         /* initialize USART operation with 9600 baud rate */ 
+    OSCCON = 0x72;              /* use internal oscillator frequency which is set to 8 MHz */
+    TRISA = 0x3C;               /* set PINA0 & PINA1 as output ports */
+    LATA  = 0x03;               /* set PINA0 & PINA1 high */
+    USART_Init(9600);           /* initialize USART operation with 9600 baud rate */ 
     MSdelay(50);
-    while(1)
-    {
+    while(1){
         data_in=USART_ReceiveChar();
-        if(data_in=='1')
-        {   
-            LED_LATCH = 0;                    /* turn ON LED */
-            USART_SendString("LED_ON"); /* send LED ON status to terminal */
+        if(data_in == '1') {   
+            LATA0 = 1;                    /* turn ON LED */
+            USART_SendString("LED_ON\n"); /* send LED ON status to terminal */
         }
-        else if(data_in=='2')
-                
-        {
-            LED_LATCH = 1;                    /* turn OFF LED */
-            USART_SendString("LED_OFF");/* send LED ON status to terminal */
+        else if(data_in == '2') {
+            LATA0 = 0;                   /* turn OFF LED */
+            USART_SendString("LED_OFF\n");/* send LED ON status to terminal */
         }
-        else
-        {
-            USART_SendString(" select 1 or 2");/* send msg to select proper option */
+        else {
+            //USART_SendString(" select 1 or 2");/* send msg to select proper option */
+            LATA1 = ~LATA1;
         }
         MSdelay(100);
     }
-    
 }

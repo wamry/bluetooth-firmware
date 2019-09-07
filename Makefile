@@ -21,9 +21,9 @@ OPTIONS=--chip=$(CHIP) -P --MSGDISABLE=359 --OPT=$(OPT) --OUTDIR=$(DISTDIR) --WA
 #--MSGDISABLE=1257,195:off,194:off  // this option will disable warning 1257, and errors 195 and 194.
 
 MKDIR=mkdir -p
-RM=rm -f 
-MV=mv 
-CP=cp 
+RM=rm -f
+MV=mv
+CP=cp
 
 
 all: build
@@ -31,7 +31,7 @@ build:
 	@${MKDIR} $(DISTDIR)
 	$(CC) $(OPTIONS) $(SRC_PATH)/$(SRC).c $(SRC_PATH)/$(SRC_USRT).c
 flash: build
-	pk2cmd -M -PPIC$(CHIP)  -Y  -F$(DISTDIR)/$(SRC).hex
+	./pk2cmd -M -PPIC$(CHIP)  -Y  -F$(DISTDIR)/$(SRC).hex
 clean:
 	rm -rf dist
 .PHONY: all clean

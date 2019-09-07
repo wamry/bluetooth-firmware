@@ -2,7 +2,7 @@
 
 /* 'C' source line config statements*/
 
-#include <pic18f2550.h>
+
 
 // #pragma config statements should precede project file includes.
 // Use project enums instead of #define for ON and OFF.
