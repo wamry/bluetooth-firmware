@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Mac",
+            "name": "macOS",
             "includePath": [
                 "${workspaceFolder}/**",
                 "/Applications/microchip/xc8/v2.05/pic/include",
@@ -10,7 +10,9 @@
             ],
             "defines": [],
             "macFrameworkPath": [
-                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"
+                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks",
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
             ],
             "compilerPath": "/usr/local/bin/gcc-9",
             "cStandard": "c11",

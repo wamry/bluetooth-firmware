@@ -1,6 +1,7 @@
-#include <pic18f2550.h>
+#include <xc.h>
 #include "config.h"
 #include "usart.h"
+//#define _XTAL_FREQ 8000000 //defined in compile command
 
 void main() {
     char data_in;
@@ -8,21 +9,21 @@ void main() {
     TRISA = 0x3C;               /* set PINA0 & PINA1 as output ports */
     LATA  = 0x03;               /* set PINA0 & PINA1 high */
     USART_Init(9600);           /* initialize USART operation with 9600 baud rate */ 
-    MSdelay(50);
+    __delay_ms(50);
+
     while(1){
         data_in=USART_ReceiveChar();
-        if(data_in == '1') {   
+        if(data_in == '1') {
             LATA0 = 1;                    /* turn ON LED */
             USART_SendString("LED_ON\n"); /* send LED ON status to terminal */
-        }
-        else if(data_in == '2') {
+            LATA1 = ~LATA1;
+        } else if(data_in == '2') {
             LATA0 = 0;                   /* turn OFF LED */
             USART_SendString("LED_OFF\n");/* send LED ON status to terminal */
-        }
-        else {
-            //USART_SendString(" select 1 or 2");/* send msg to select proper option */
             LATA1 = ~LATA1;
+        } else {
+            USART_SendString("extra");/* send msg to select proper option */
         }
-        MSdelay(100);
+        __delay_ms(100);
     }
 }
