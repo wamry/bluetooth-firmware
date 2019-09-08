@@ -6,8 +6,8 @@
 void main() {
     char data_in;
     OSCCON = 0x72;              /* use internal oscillator frequency which is set to 8 MHz */
-    TRISA = 0x3E;               /* set PINA0 & PINA1 as output ports */
-    LATA  = 0x01;               /* set PINA0 & PINA1 high */
+    TRISA = 0x3E;               /* set PINA0 as output ports */
+    LATA  = 0x01;               /* set PINA0 high */
     USART_Init(9600);           /* initialize USART operation with 9600 baud rate */ 
     __delay_ms(50);
 
