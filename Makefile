@@ -19,12 +19,10 @@ CHIP=18f2550
 DISTDIR=dist
 OPTIONS=--chip=$(CHIP) -D_XTAL_FREQ=8000000 -P --MSGDISABLE=359 --OPT=$(OPT) --OUTDIR=$(DISTDIR) --WARNFORMAT="warn: [%a] [%n] [%l] [%f] %s"  
 #--MSGDISABLE=1257,195:off,194:off  // this option will disable warning 1257, and errors 195 and 194.
-
 MKDIR=mkdir -p
 RM=rm -f
 MV=mv
 CP=cp
-
 
 all: build
 build:
@@ -33,5 +31,5 @@ build:
 flash: build
 	./pk2cmd -M -PPIC$(CHIP)  -Y  -F$(DISTDIR)/$(SRC).hex
 clean:
-	rm -rf dist
+	@${RM} -rf dist
 .PHONY: all clean
