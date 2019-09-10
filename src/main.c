@@ -12,11 +12,11 @@ void main() {
 
     while(1){
         __delay_ms(5000);
-        LATA0 = ~LATA0;
+        LATA0 = ~LATA0;         /* Toggle LED */
     }
 }
 
-void interrupt ISR (void){
+void __interrupt(high_priority) BT_RCV(void){
 	if (RCIF == 1) {
         UART_Buffer = RCREG;                /* Read The Received Data Buffer */
 		if(UART_Buffer == '1') {
@@ -24,9 +24,9 @@ void interrupt ISR (void){
             USART_SendString("LED_ON\n");   /* send LED ON status to terminal */
         } else if(UART_Buffer == '2') {
             LATA0 = 0;                      /* turn OFF LED */
-            USART_SendString("LED_OFF\n");  /* send LED ON status to terminal */
+            USART_SendString("LED_OFF\n");  /* send LED oFF status to terminal */
         } else {
-            USART_SendString("unknown");      /* send msg to select proper option */
+            USART_SendString("unknown");    /* send msg to select proper option */
         }
 		RCIF = 0;                           /* clear flag */
 	}
